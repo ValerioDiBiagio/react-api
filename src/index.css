@@ -26,10 +26,17 @@ h1 {
     font-size: 50px;
 }
 
+h2 {
+    margin-bottom: 20px;
+    color: #ce2e06;
+    font-size: 40px;
+}
+
 .raw {
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .raw section {

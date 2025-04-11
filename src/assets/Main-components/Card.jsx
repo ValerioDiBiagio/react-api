@@ -1,5 +1,5 @@
 
-export default function ActorCard({ children, name, image }) {
+export default function Card({ children, name, image }) {
 
     return (
         <section>
