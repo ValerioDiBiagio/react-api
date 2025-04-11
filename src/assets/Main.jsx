@@ -8,30 +8,32 @@ const endpointActors = 'https://www.freetestapi.com/api/v1/actors';
 const endpointActresses = 'https://www.freetestapi.com/api/v1/actresses';
 
 export default function Main() {
-    const [actorsList, setActorsList] = useState([]);
-    const [actressesList, setActressesList] = useState([]);
 
+    const [actorsActressesList, setActorsActressesList] = useState([]);
 
-    function fetchActors() {
+    function fetchActorsActressesList() {
         axios.get(endpointActors)
-            .then((res) => setActorsList(res.data));
+            .then((resActors) => {
+                axios.get(endpointActresses)
+                    .then((resActresses) => {
+
+                        const actors = resActors.data;
+                        const actresses = resActresses.data;
+
+                        setActorsActressesList([...actors, ...actresses]);
+                    })
+            })
     }
 
-    useEffect(fetchActors, [])
+    useEffect(fetchActorsActressesList, []);
 
-    function fetchActresses() {
-        axios.get(endpointActresses)
-            .then((res) => setActressesList(res.data));
-    }
-
-    useEffect(fetchActresses, [])
 
     return (
         <main>
             <div className="container">
-                <h2>Men</h2>
+                <h2>Actors and Actresses</h2>
                 <div className='raw'>
-                    {actorsList.map(actors => <Card key={actors.id} name={actors.name} onChange={e => setActorsList(e.target.value)}>
+                    {actorsActressesList.map(actors => <Card key={actors.name} name={actors.name} onChange={e => setActorsActressesList(e.target.value)}>
                         <div className='img'>
                             <img src={actors.image} alt={actors.name} />
                         </div>
@@ -41,18 +43,6 @@ export default function Main() {
                         <li><span>Awards:</span> {actors.awards}</li>
                     </Card>
                     )}
-                </div>
-                <h2>Women</h2>
-                <div className='raw'>
-                    {actressesList.map(actress => <section key={actress.id} name={actress.name} onChange={e => setActressesList(e.target.value)}>
-                        <div className='img'>
-                            <img src={actress.image} alt={actress.name} />
-                        </div>
-                        <li><span>Year of Birth:</span> {actress.birth_year}</li>
-                        <li><span>Nationality:</span> {actress.nationality}</li>
-                        <li><span>Biography:</span> {actress.biography}</li>
-                        <li><span>Awards:</span> {actress.awards}</li>
-                    </section>)}
                 </div>
             </div>
         </main>
