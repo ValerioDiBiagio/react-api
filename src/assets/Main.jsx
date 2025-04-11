@@ -20,13 +20,13 @@ export default function Main() {
             <div className="container">
                 <div className='raw'>
                     {actorsList.map(actors => <ActorCard key={actors.id} name={actors.name} onChange={e => setActorsList(e.target.value)}>
-                        <div>
+                        <div className='img'>
                             <img src={actors.image} alt={actors.name} />
                         </div>
-                        <li>Year of Birth: {actors.birth_year}</li>
-                        <li>Nationality: {actors.nationality}</li>
-                        <li>Biography: {actors.biography}</li>
-                        <li>Awards: {actors.awards}</li>
+                        <li><span>Year of Birth:</span> {actors.birth_year}</li>
+                        <li><span>Nationality:</span> {actors.nationality}</li>
+                        <li><span>Biography:</span> {actors.biography}</li>
+                        <li><span>Awards:</span> {actors.awards}</li>
                     </ActorCard>
                     )}
                 </div>
