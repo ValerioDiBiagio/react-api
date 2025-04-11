@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from "axios"
-import ActorCard from '../assets/Main-components/actorCard'
+import ActorCard from './Main-components/ActorCard'
 
 
 const endpoint = 'https://www.freetestapi.com/api/v1/actors';
